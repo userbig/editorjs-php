@@ -106,7 +106,7 @@ class EditorJS
         $sanitizedBlocks = [];
 
         foreach ($this->blocks as $block) {
-            $sanitizedBlock = $this->handler->sanitizeBlock($block['type'], $block['data']);
+            $sanitizedBlock = $this->handler->sanitizeBlock($block['type'], $block['data'] ?? []);
             if (!empty($sanitizedBlock)) {
                 array_push($sanitizedBlocks, $sanitizedBlock);
             }
@@ -123,7 +123,7 @@ class EditorJS
     private function validateBlocks()
     {
         foreach ($this->blocks as $block) {
-            if (!$this->handler->validateBlock($block['type'], $block['data'])) {
+            if (!$this->handler->validateBlock($block['type'], $block['data'] ?? [])) {
                 return false;
             }
         }
